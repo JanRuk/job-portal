@@ -1,0 +1,27 @@
+HELP.md
+**/target/
+test-output/
+
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+**/.idea/
+**/*.iml
+**/*.ipr
+**/*.iws
+**/out/
+
+### VS Code ###
+**/.vscode/
