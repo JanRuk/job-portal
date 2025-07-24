@@ -69,4 +69,14 @@ public class UserService {
         }
         return null;
     }
+
+    public Users getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String username = authentication.getName();
+            return usersRepository.findByEmail(username).orElseThrow(() ->
+                    new UsernameNotFoundException("User not found with username " + username));
+        }
+        return null;
+    }
 }
