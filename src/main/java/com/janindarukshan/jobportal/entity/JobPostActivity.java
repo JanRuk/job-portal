@@ -29,6 +29,17 @@ public class JobPostActivity {
     @Transient
     private Boolean isActive;
 
+    @Transient
+    private Boolean isSaved;
+
+    public Boolean getIsSaved() {
+        return isSaved;
+    }
+
+    public void setIsSaved(Boolean saved) {
+        isSaved = saved;
+    }
+
     @Length(max = 10000)
     private String descriptionOfJob;
 
@@ -89,11 +100,11 @@ public class JobPostActivity {
         this.jobCompanyId = jobCompany;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
