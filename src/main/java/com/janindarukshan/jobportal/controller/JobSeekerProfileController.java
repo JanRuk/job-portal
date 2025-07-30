@@ -63,20 +63,24 @@ public class JobSeekerProfileController {
 
     @PostMapping("/addNew")
     public String addNew(JobSeekerProfile jobSeekerProfile,
-                         @RequestParam("image")MultipartFile image,
+                         @RequestParam("image") MultipartFile image,
                          @RequestParam("pdf") MultipartFile pdf,
                          Model model) {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Users user = usersRepository.findByEmail(authentication.getName()).orElseThrow(() ->
-                    new UsernameNotFoundException("user not found"));
+            Users user = usersRepository.findByEmail(authentication.getName()).orElseThrow(() -> new UsernameNotFoundException("User not found."));
             jobSeekerProfile.setUserId(user);
             jobSeekerProfile.setUserAccountId(user.getUserId());
         }
+
         List<Skills> skillsList = new ArrayList<>();
         model.addAttribute("profile", jobSeekerProfile);
         model.addAttribute("skills", skillsList);
+
+        for (Skills skills : jobSeekerProfile.getSkills()) {
+            skills.setJobSeekerProfile(jobSeekerProfile);
+        }
 
         String imageName = "";
         String resumeName = "";
@@ -87,10 +91,11 @@ public class JobSeekerProfileController {
         }
 
         if (!Objects.equals(pdf.getOriginalFilename(), "")) {
-            resumeName = StringUtils.cleanPath(Objects.requireNonNull(image.getOriginalFilename()));
-            jobSeekerProfile.setProfilePhoto(resumeName);
+            resumeName = StringUtils.cleanPath(Objects.requireNonNull(pdf.getOriginalFilename()));
+            jobSeekerProfile.setResume(resumeName);
         }
-        JobSeekerProfile seekerProfile =  jobSeekerProfileService.addNew(jobSeekerProfile);
+
+        JobSeekerProfile seekerProfile = jobSeekerProfileService.addNew(jobSeekerProfile);
 
         try {
             String uploadDir = "photos/candidate/" + jobSeekerProfile.getUserAccountId();
@@ -100,10 +105,10 @@ public class JobSeekerProfileController {
             if (!Objects.equals(pdf.getOriginalFilename(), "")) {
                 FileUploadUtil.saveFile(uploadDir, resumeName, pdf);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-
+        catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
 
         return "redirect:/dashboard/";
     }
