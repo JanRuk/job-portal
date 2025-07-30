@@ -4,7 +4,7 @@ import com.janindarukshan.jobportal.entity.*;
 import com.janindarukshan.jobportal.service.JobPostActivityService;
 import com.janindarukshan.jobportal.service.JobSeekerApplyService;
 import com.janindarukshan.jobportal.service.JobSeekerSaveService;
-import com.janindarukshan.jobportal.service.UserService;
+import com.janindarukshan.jobportal.service.UsersService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,12 +26,12 @@ import java.util.Objects;
 @Controller
 public class JobPostActivityController {
 
-    private final UserService userService;
+    private final UsersService userService;
     private final JobPostActivityService jobPostActivityService;
     private final JobSeekerApplyService jobSeekerApplyService;
     private final JobSeekerSaveService jobSeekerSaveService;
 
-    public JobPostActivityController(UserService userService, JobPostActivityService jobPostActivityService, JobSeekerApplyService jobSeekerApplyService, JobSeekerSaveService jobSeekerSaveService) {
+    public JobPostActivityController(UsersService userService, JobPostActivityService jobPostActivityService, JobSeekerApplyService jobSeekerApplyService, JobSeekerSaveService jobSeekerSaveService) {
         this.userService = userService;
         this.jobPostActivityService = jobPostActivityService;
         this.jobSeekerApplyService = jobSeekerApplyService;

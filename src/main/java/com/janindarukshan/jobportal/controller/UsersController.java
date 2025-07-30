@@ -2,7 +2,7 @@ package com.janindarukshan.jobportal.controller;
 
 import com.janindarukshan.jobportal.entity.Users;
 import com.janindarukshan.jobportal.entity.UsersType;
-import com.janindarukshan.jobportal.service.UserService;
+import com.janindarukshan.jobportal.service.UsersService;
 import com.janindarukshan.jobportal.service.UsersTypeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,10 +23,10 @@ import java.util.Optional;
 public class UsersController {
 
     private final UsersTypeService usersTypeService;
-    private final UserService userService;
+    private final UsersService userService;
 
     @Autowired
-    public UsersController(UsersTypeService usersTypeService, UserService userService) {
+    public UsersController(UsersTypeService usersTypeService, UsersService userService) {
         this.usersTypeService = usersTypeService;
         this.userService = userService;
     }
