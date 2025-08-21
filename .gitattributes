@@ -7,6 +7,7 @@ static/css/* linguist-vendored
 public/* linguist-vendored
 *.min.js linguist-vendored
 *.map linguist-vendored
+*.js linguist-vendored
 
 # -----------------------------
 # Ignore build artifacts
@@ -30,3 +31,4 @@ build/* linguist-generated
 # -----------------------------
 *.gradle linguist-language=Java
 pom.xml linguist-language=Java
+src/main/java/* linguist-language=Java
