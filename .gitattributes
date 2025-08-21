@@ -1,29 +1,32 @@
-# ---------------------------------
+# -----------------------------
+# Ignore frontend/vendor files
+# -----------------------------
+node_modules/* linguist-vendored
+static/js/* linguist-vendored
+static/css/* linguist-vendored
+public/* linguist-vendored
+*.min.js linguist-vendored
+*.map linguist-vendored
+
+# -----------------------------
 # Ignore build artifacts
-# ---------------------------------
+# -----------------------------
 target/* linguist-generated
 build/* linguist-generated
 *.class linguist-generated
 *.jar linguist-generated
 
-# ---------------------------------
-# Dependencies
-# ---------------------------------
-*.min.js linguist-vendored
-*.map linguist-vendored
-node_modules/* linguist-vendored
-
-# ---------------------------------
+# -----------------------------
 # Documentation and configs
-# ---------------------------------
+# -----------------------------
 *.md linguist-documentation
 *.yml linguist-documentation
 *.yaml linguist-documentation
 *.properties linguist-documentation
 *.xml linguist-documentation
 
-# ---------------------------------
-# Force language classification (if needed)
-# ---------------------------------
-*.tpl linguist-language=Java
+# -----------------------------
+# Force classify main files
+# -----------------------------
 *.gradle linguist-language=Java
+pom.xml linguist-language=Java
